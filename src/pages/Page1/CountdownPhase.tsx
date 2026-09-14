@@ -80,11 +80,8 @@ export function CountdownPhase({ targetDate, onComplete }: CountdownPhaseProps) 
 
   const reachedZero = remainingMs <= 0
   const secondsLeft = Math.ceil(remainingMs / 1000)
-  const skipToTenSeconds = () => {
-    const tenSecondTarget = Date.now() + FINAL_STRETCH_MS
-    setCountdownTargetMs(tenSecondTarget)
-    setRemainingMs(FINAL_STRETCH_MS)
-    lastBeepedSecond.current = null
+  const skipCountdown = () => {
+    onComplete()
   }
   useEffect(() => {
     if (reachedZero) {
@@ -160,8 +157,8 @@ export function CountdownPhase({ targetDate, onComplete }: CountdownPhaseProps) 
         ))}
       </div>
       {remainingMs > FINAL_STRETCH_MS && isAuthorizedDevLink() && (
-        <button type="button" className={styles.skipButton} onClick={skipToTenSeconds}>
-          dev:skip timing (to 10s)
+        <button type="button" className={styles.skipButton} onClick={skipCountdown}>
+          dev: skip timing
         </button>
       )}
     </div>
