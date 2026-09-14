@@ -28,6 +28,21 @@ function splitDuration(ms: number) {
 
 const pad = (n: number) => String(n).padStart(2, '0')
 
+function isAuthorizedDevLink(): boolean {
+  if (typeof window === 'undefined') return false
+  const params = new URLSearchParams(window.location.search)
+  const isLocalHost = window.location.hostname === 'localhost'
+    || window.location.hostname === '127.0.0.1'
+  const isAuthorizedProductionLink = (
+    window.location.hostname === 'arfa15sep.vercel.app'
+    || window.location.hostname === '15september.vercel.app'
+  )
+    && params.get('dev') === 'letmein-birthday'
+
+  return window.location.pathname === '/'
+    && (isLocalHost || isAuthorizedProductionLink)
+}
+
 export function CountdownPhase({ targetDate, onComplete }: CountdownPhaseProps) {
   const [countdownTargetMs, setCountdownTargetMs] = useState(() => targetDate.getTime())
   const [remainingMs, setRemainingMs] = useState(() => msRemaining(targetDate))
@@ -72,6 +87,7 @@ export function CountdownPhase({ targetDate, onComplete }: CountdownPhaseProps) 
 
   const reachedZero = remainingMs <= 0
   const secondsLeft = Math.ceil(remainingMs / 1000)
+  const showSkipButton = isAuthorizedDevLink()
   const skipCountdown = () => {
     onCompleteRef.current()
   }
@@ -148,9 +164,11 @@ export function CountdownPhase({ targetDate, onComplete }: CountdownPhaseProps) 
           </div>
         ))}
       </div>
-      <button type="button" className={styles.skipButton} onClick={skipCountdown}>
-        Skip countdown
-      </button>
+      {showSkipButton && (
+        <button type="button" className={styles.skipButton} onClick={skipCountdown}>
+          dev: skip timing
+        </button>
+      )}
     </div>
   )
 }
