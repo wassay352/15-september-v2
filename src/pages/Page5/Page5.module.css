@@ -1,11 +1,6 @@
 .page { position: relative; min-height: 100dvh; overflow: hidden; background: var(--color-bg-primary); color: white; }
-.photoScene, .candleScene, .messageScene { position: absolute; inset: 0; display: grid; place-items: center; width: 100vw; min-height: 100dvh; padding: var(--spacing-xl); }
-.photoScene { animation: sceneIn 900ms ease both; }
-.eyebrow { position: absolute; top: 9%; z-index: 2; margin: 0; color: var(--color-accent-gold); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; }
-.photoField { position: absolute; inset: 0; }
-.polaroid { position: absolute; top: var(--photo-top); left: var(--photo-left); width: clamp(90px, 13vw, 170px); margin: 0; padding: 8px 8px 22px; background: #f5f0e6; box-shadow: 0 16px 36px rgba(0,0,0,.42); transform: translate(-50%, -50%) rotate(var(--photo-rotation)); animation: polaroidIn 800ms cubic-bezier(.2,.8,.2,1) var(--photo-delay) both; }
-.polaroid img { display: block; width: 100%; aspect-ratio: 1 / 1.08; object-fit: cover; }
-.candleScene { animation: sceneIn 800ms ease both; }
+.candleScene, .messageScene { position: absolute; inset: 0; display: grid; place-items: center; width: 100vw; min-height: 100dvh; padding: var(--spacing-xl); }
+.candleScene { animation: none; }
 .candleGlow { position: absolute; width: min(65vw, 430px); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(252,227,138,.24), transparent 68%); animation: glowPulse 1.7s ease-in-out infinite; }
 .holdButton { position: absolute; bottom: 12%; z-index: 3; display: grid; place-items: center; width: 170px; min-height: 58px; padding: 0 18px; border: 1px solid rgba(252,227,138,.55); border-radius: 999px; background: var(--color-glass-bg); color: white; cursor: pointer; -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
 .holdButton span:last-child { position: relative; z-index: 1; font-size: 12px; letter-spacing: .04em; }
@@ -25,7 +20,6 @@
 .closed { background: #000; animation: closeOut 1.2s ease both; }
 
 @keyframes sceneIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes polaroidIn { from { opacity: 0; transform: translate(-50%, -50%) translateY(34px) scale(.72) rotate(0deg); } to { opacity: 1; transform: translate(-50%, -50%) rotate(var(--photo-rotation)); } }
 @keyframes glowPulse { 50% { opacity: .65; transform: scale(1.12); } }
 @keyframes messageIn { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: scale(1); } }
 @keyframes letterLineReveal {
@@ -42,9 +36,6 @@
 }
 
 @media (max-width: 600px) {
-  .photoScene { padding: 10px; }
-  .polaroid { width: clamp(74px, 22vw, 120px); padding: 5px 5px 15px; }
-  .eyebrow { top: 6%; }
   .holdButton { bottom: 10%; }
   .doodles { opacity: .2; }
 }

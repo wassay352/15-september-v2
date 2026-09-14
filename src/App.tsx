@@ -12,6 +12,7 @@ function Router() {
   const { currentPage, dispatch } = useAppContext()
   const next = () => dispatch({ type: 'NEXT_PAGE' })
 
+  // Clean sequential router without password gate checks
   if (currentPage === 1) return <Page1 onComplete={next} />
   if (currentPage === 2) return <Page2 onComplete={next} />
   if (currentPage === 3) return <Page3 onComplete={next} />
@@ -23,7 +24,11 @@ function Router() {
       <p className={styles.placeholderEmoji}>🎂</p>
       <h1>The celebration is complete ✨</h1>
       <p>Thank you for being part of this little birthday experience.</p>
-      <button type="button" className={styles.replayBtn} onClick={() => dispatch({ type: 'SET_STATE', payload: 'page1-countdown' })}>
+      <button 
+        type="button" 
+        className={styles.replayBtn} 
+        onClick={() => dispatch({ type: 'SET_STATE', payload: 'page1-countdown' })}
+      >
         ↺ Replay Page 1
       </button>
     </div>

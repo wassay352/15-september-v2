@@ -163,26 +163,18 @@
 */
 
 .skipButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   margin-top: var(--spacing-lg);
-  border: 1px solid rgba(236, 72, 153, 0.3);
-  background: rgba(236, 72, 153, 0.2);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  color: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 13px;
-  padding: 10px 20px;
+  padding: 8px 16px;
   border-radius: 999px;
   cursor: pointer;
-  transition: background 180ms ease, transform 180ms ease, border-color 180ms ease;
 }
 
 .skipButton:hover {
-  border-color: rgba(236, 72, 153, 0.5);
-  background: rgba(236, 72, 153, 0.4);
-  transform: scale(1.04);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 /* ============================================== Responsive

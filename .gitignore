@@ -1,3 +1,158 @@
+# ================================================================
+# Dependencies and package-manager caches
+# ================================================================
 node_modules/
-node_modules/
-*.zip
+.pnpm-store/
+.pnpm-debug.log*
+.yarn/
+.yarn-cache/
+.yarnrc
+.yarnrc.yml
+.npm/
+.npmrc.local
+.npm/_cacache/
+.npm/_logs/
+.npm/_npx/
+package-lock.json.tmp
+pnpm-lock.yaml.tmp
+yarn.lock.tmp
+
+# ================================================================
+# Build output and framework caches
+# ================================================================
+/.next/
+/out/
+/build/
+/dist/
+/.turbo/
+/.cache/
+/.parcel-cache/
+/.svelte-kit/
+/.nuxt/
+/.vite/
+/.eslintcache
+/.stylelintcache
+/.tsbuildinfo
+*.tsbuildinfo
+*.swc
+*.rpt
+
+# ================================================================
+# Environment files and secrets
+# Keep all environment variants out of the repository.
+# Use encrypted secret management or GitHub Actions secrets instead.
+# ================================================================
+.env
+.env.*
+.env*.local
+!.env.example
+!.env.template
+!.env.sample
+
+# Common local secret/certificate material
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+*.der
+secrets/
+.secret/
+
+# ================================================================
+# Operating-system metadata
+# ================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100/
+.Trashes/
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+
+# ================================================================
+# Editors and IDE metadata
+# ================================================================
+.idea/
+*.iml
+*.ipr
+*.iws
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.swp
+*.swo
+*.swn
+*~
+.vscode/*
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# ================================================================
+# Logs, crash dumps, and debug output
+# ================================================================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+*.stackdump
+
+# ================================================================
+# Coverage and test artifacts
+# ================================================================
+coverage/
+.nyc_output/
+.coverage/
+.coverage.*
+htmlcov/
+.pytest_cache/
+playwright-report/
+blob-report/
+test-results/
+.cypress/
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
+
+# ================================================================
+# Local worktrees, temporary files, and generated reports
+# ================================================================
+.worktrees/
+worktrees/
+.tmp/
+tmp/
+temp/
+.tmp-worktree/
+*.tmp
+*.temp
+*.bak
+*.orig
+*.rej
+*.patch
+
+# ================================================================
+# Preserve standard application source and configuration files.
+# These negations prevent an overly broad parent rule from hiding them.
+# ================================================================
+!/src/
+!/public/
+!/app/
+!/components/
+!/pages/
+!next.config.*
+!tailwind.config.*
+!tsconfig*.json
+!vite.config.*
+!package.json
+!package-lock.json
+!pnpm-lock.yaml
+!yarn.lock

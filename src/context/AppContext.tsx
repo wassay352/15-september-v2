@@ -13,7 +13,7 @@ const STATE_TO_PAGE: Record<AppState, number> = {
   'page2-music': 2,
   'page3-locker': 3,
   'page3-gallery': 3,
-  'page4-letter': 4,
+  'page4-firefly': 4,
   'page5-finale': 5,
   complete: 6,
 }
@@ -31,7 +31,7 @@ function reducer(state: ReducerState, action: AppAction): ReducerState {
       const nextPageStart: Partial<Record<number, AppState>> = {
         1: 'page2-music',
         2: 'page3-locker',
-        3: 'page4-letter',
+        3: 'page4-firefly',
         4: 'page5-finale',
         5: 'complete',
       }
@@ -43,8 +43,8 @@ function reducer(state: ReducerState, action: AppAction): ReducerState {
       const prevPageStart: Partial<Record<number, AppState>> = {
         2: 'page1-countdown',
         3: 'page2-music',
-        4: 'page3-gallery',
-        5: 'page4-letter',
+        4: 'page3-locker',
+        5: 'page4-firefly',
       }
       const currentPage = STATE_TO_PAGE[state.currentState]
       const prev = prevPageStart[currentPage]

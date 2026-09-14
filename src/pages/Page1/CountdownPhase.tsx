@@ -28,18 +28,6 @@ function splitDuration(ms: number) {
 
 const pad = (n: number) => String(n).padStart(2, '0')
 
-function isAuthorizedDevLink(): boolean {
-  if (typeof window === 'undefined') return false
-  const params = new URLSearchParams(window.location.search)
-  const isLocalHost = window.location.hostname === 'localhost'
-    || window.location.hostname === '127.0.0.1'
-  const isTargetDeployment = window.location.hostname === 'arfa15sep.vercel.app'
-
-  return window.location.pathname === '/'
-    && (isLocalHost || isTargetDeployment)
-    && params.get('dev') === 'letmein-birthday'
-}
-
 export function CountdownPhase({ targetDate, onComplete }: CountdownPhaseProps) {
   const [countdownTargetMs, setCountdownTargetMs] = useState(() => targetDate.getTime())
   const [remainingMs, setRemainingMs] = useState(() => msRemaining(targetDate))
@@ -85,7 +73,7 @@ export function CountdownPhase({ targetDate, onComplete }: CountdownPhaseProps) 
   const reachedZero = remainingMs <= 0
   const secondsLeft = Math.ceil(remainingMs / 1000)
   const skipCountdown = () => {
-    onComplete()
+    onCompleteRef.current()
   }
   useEffect(() => {
     if (reachedZero) {
@@ -160,11 +148,9 @@ export function CountdownPhase({ targetDate, onComplete }: CountdownPhaseProps) 
           </div>
         ))}
       </div>
-      {remainingMs > FINAL_STRETCH_MS && isAuthorizedDevLink() && (
-        <button type="button" className={styles.skipButton} onClick={skipCountdown}>
-          Skip Countdown
-        </button>
-      )}
+      <button type="button" className={styles.skipButton} onClick={skipCountdown}>
+        Skip countdown
+      </button>
     </div>
   )
 }

@@ -1,0 +1,47 @@
+.page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  background: radial-gradient(circle at top, rgba(255, 184, 201, 0.16), transparent 30%), #120d16;
+}
+
+.letter {
+  width: min(100%, 760px);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(12px);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.letter p {
+  margin: 0 0 1rem;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.salutation {
+  font-family: var(--font-script), cursive;
+  font-size: clamp(2.1rem, 5vw, 3.25rem);
+  margin-bottom: 1.5rem !important;
+}
+
+.emphasis {
+  color: #f9d77e;
+  font-weight: 600;
+}
+
+.continue {
+  margin-top: 1rem;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.9rem 1.4rem;
+  background: linear-gradient(135deg, #ffafd1, #fce38a);
+  color: #1a0d1a;
+  font-weight: 800;
+  cursor: pointer;
+}

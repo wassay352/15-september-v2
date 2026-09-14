@@ -13,7 +13,7 @@ export type AppState =
   | 'page2-music'
   | 'page3-locker'
   | 'page3-gallery'
-  | 'page4-letter'
+  | 'page4-firefly'
   | 'page5-finale'
   | 'complete'
 

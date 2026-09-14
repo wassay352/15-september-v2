@@ -98,14 +98,30 @@ export function Page1({
               targetDate={
                 BIRTHDAY_TARGET
               }
-              onComplete={onComplete}
+              onComplete={() =>
+                setPhase('fireworks')
+              }
             />
           </motion.div>
         )}
 
 
-      </AnimatePresence>
+        {phase === 'fireworks' && (
+          <motion.div
+            key="fireworks"
+            exit={{
+              opacity: 0,
+            }}
+          >
+            <FireworksPhase
+              onComplete={() =>
+                setPhase('cakeAssembly')
+              }
+            />
+          </motion.div>
+        )}
 
+      </AnimatePresence>
 
       {/* ======================================================
           CAKE SCENE
