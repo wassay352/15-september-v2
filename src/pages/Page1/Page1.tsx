@@ -10,7 +10,7 @@ import {
   motion,
 } from 'framer-motion'
 
-import { BIRTHDAY_TARGET, ENTRY_PASSCODE } from '../../config'
+import { BIRTHDAY_TARGET } from '../../config'
 
 import { CountdownPhase } from './CountdownPhase'
 import { FireworksPhase } from './FireworksPhase'
@@ -37,8 +37,6 @@ export function Page1({
 
   const [assembled, setAssembled] =
     useState(false)
-  const [entryCode, setEntryCode] = useState('')
-  const [entryError, setEntryError] = useState(false)
 
   /*
    * ==========================================================
@@ -74,17 +72,6 @@ export function Page1({
     phase === 'cakeAssembly' ||
     phase === 'blowOut'
 
-  const submitEntryCode = () => {
-    if (entryCode === ENTRY_PASSCODE) {
-      setEntryError(false)
-      setPhase('cakeAssembly')
-      return
-    }
-    setEntryError(true)
-    setEntryCode('')
-  }
-
-
   /*
    * ==========================================================
    * RENDER
@@ -111,58 +98,13 @@ export function Page1({
               targetDate={
                 BIRTHDAY_TARGET
               }
-              onComplete={() =>
-                setPhase('fireworks')
-              }
+              onComplete={onComplete}
             />
           </motion.div>
         )}
 
-
-        {phase === 'fireworks' && (
-          <motion.div
-            key="fireworks"
-            exit={{
-              opacity: 0,
-            }}
-          >
-            <FireworksPhase
-              onComplete={() =>
-                setPhase('passcode')
-              }
-            />
-          </motion.div>
-        )}
 
       </AnimatePresence>
-
-      {phase === 'passcode' && (
-        <div className={styles.passcodeGate} role="dialog" aria-labelledby="entry-gate-title">
-          <div className={styles.passcodePanel}>
-            <p className={styles.passcodeEyebrow}>A private birthday room</p>
-            <h1 id="entry-gate-title">Enter the passcode</h1>
-            <p className={styles.passcodeHint}>The next part is only for you.</p>
-            <input
-              autoFocus
-              className={styles.passcodeInput}
-              type="text"
-              inputMode="text"
-              autoComplete="off"
-              maxLength={ENTRY_PASSCODE.length}
-              value={entryCode}
-              onChange={(event) => {
-                setEntryError(false)
-                setEntryCode(event.target.value.slice(0, ENTRY_PASSCODE.length))
-              }}
-              onKeyDown={(event) => event.key === 'Enter' && submitEntryCode()}
-              aria-invalid={entryError}
-              aria-describedby={entryError ? 'entry-error' : undefined}
-            />
-            <button type="button" className={styles.passcodeButton} onClick={submitEntryCode}>Unlock</button>
-            {entryError && <p id="entry-error" className={styles.passcodeError}>That passcode is not quite right.</p>}
-          </div>
-        </div>
-      )}
 
 
       {/* ======================================================

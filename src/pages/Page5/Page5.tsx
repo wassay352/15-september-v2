@@ -8,13 +8,11 @@ export interface Page5Props {
   onComplete: () => void
 }
 
-type FinaleScene = 'photos' | 'candle' | 'goodbye' | 'surprise' | 'closed'
+type FinaleScene = 'candle' | 'goodbye' | 'surprise' | 'closed'
 
 const HOLD_DURATION_MS = 1800
-const PHOTO_DURATION_MS = 6200
 const GOODBYE_DURATION_MS = 19000
 const SURPRISE_DURATION_MS = 3200
-const PHOTOS = Array.from({ length: 18 }, (_, index) => `/Gallery/${index + 1}.jpeg`)
 const GOODBYE_LINES = [
   'Thank you for taking this little journey with me through these pages.',
   'Every countdown, every song, and every word here was put together just to bring a smile to your face today.',
@@ -54,25 +52,12 @@ function BirthdayDoodles({ secondary = false }: { secondary?: boolean }) {
 
 export function Page5({ onComplete }: Page5Props) {
   const { dispatch } = useAppContext()
-  const [scene, setScene] = useState<FinaleScene>('photos')
+  const [scene, setScene] = useState<FinaleScene>('candle')
   const [holdProgress, setHoldProgress] = useState(0)
   const [candleBlown, setCandleBlown] = useState(false)
   const holdTimer = useRef<number | null>(null)
   const holdStartedAt = useRef(0)
   const completed = useRef(false)
-
-  const photoStyles = useMemo<CSSProperties[]>(() => PHOTOS.map(() => ({
-    '--photo-left': `${10 + Math.random() * 80}%`,
-    '--photo-top': `${10 + Math.random() * 70}%`,
-    '--photo-rotation': `${-14 + Math.random() * 28}deg`,
-    '--photo-delay': `${Math.random() * 1.4}s`,
-  } as CSSProperties)), [])
-
-  useEffect(() => {
-    if (scene !== 'photos') return
-    const timeout = window.setTimeout(() => setScene('candle'), PHOTO_DURATION_MS)
-    return () => window.clearTimeout(timeout)
-  }, [scene])
 
   useEffect(() => {
     if (scene !== 'goodbye') return
@@ -121,19 +106,6 @@ export function Page5({ onComplete }: Page5Props) {
 
   return (
     <div className={`${styles.page} ${scene === 'closed' ? styles.closed : ''}`}>
-      {scene === 'photos' && (
-        <section className={styles.photoScene} aria-label="A collection of birthday memories">
-          <p className={styles.eyebrow}>One last little surprise</p>
-          <div className={styles.photoField}>
-            {PHOTOS.map((src, index) => (
-              <figure key={src} className={styles.polaroid} style={photoStyles[index]}>
-                <img src={src} alt={`Birthday memory ${index + 1}`} />
-              </figure>
-            ))}
-          </div>
-        </section>
-      )}
-
       {scene === 'candle' && (
         <section className={styles.candleScene} aria-label="Blow out the candle">
           <div className={styles.candleGlow} />

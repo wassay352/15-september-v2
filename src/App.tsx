@@ -4,6 +4,7 @@ import { BirthdayDoodles } from './components/BirthdayDoodles/BirthdayDoodles'
 import { Page1 } from './pages/Page1/Page1'
 import { Page2 } from './pages/Page2/Page2'
 import { Page3 } from './pages/Page3/Page3'
+import Page4 from './pages/Page4/Page4'
 import { Page5 } from './pages/Page5/Page5'
 import styles from './App.module.css'
 
@@ -14,6 +15,7 @@ function Router() {
   if (currentPage === 1) return <Page1 onComplete={next} />
   if (currentPage === 2) return <Page2 onComplete={next} />
   if (currentPage === 3) return <Page3 onComplete={next} />
+  if (currentPage === 4) return <Page4 onComplete={next} />
   if (currentPage === 5) return <Page5 onComplete={next} />
 
   return (

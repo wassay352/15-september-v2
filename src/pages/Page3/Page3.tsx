@@ -13,7 +13,7 @@ export function Page3({ onComplete }: Page3Props) {
   return (
     <div className={styles.page}>
       <header className={styles.header}>
-        <h1>OUR SCRAPBOOK</h1>
+        <h1>Memories &amp; Moments</h1>
         <p>Turn the pages and stay awhile in the memories.</p>
       </header>
       <PdfFlipbook />
