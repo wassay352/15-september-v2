@@ -1,0 +1,192 @@
+/* ============================================== Shared layout
+   Both the "long" (days/hours/min/sec) view and the "final stretch"
+   (big bouncing number) view fill the viewport and center their content.
+*/
+
+.longWrap,
+.wrap {
+  position: relative;
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-xl);
+  text-align: center;
+}
+
+/* ============================================== Long countdown (> 10s left)
+*/
+
+.eyebrow {
+  margin: 0;
+  font-family: var(--font-script);
+  font-size: clamp(20px, 3vw, 28px);
+  color: var(--color-accent-gold);
+  letter-spacing: 0.02em;
+}
+
+.targetLabel {
+  margin: 0 0 var(--spacing-lg);
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 700;
+  background: linear-gradient(135deg, #fff, var(--color-accent-pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.unitRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: var(--color-glass-bg);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  padding: var(--spacing-lg) var(--spacing-xl);
+}
+
+.unitGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 64px;
+}
+
+.unitValue {
+  font-size: clamp(28px, 6vw, 48px);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: white;
+  line-height: 1;
+}
+
+.unitLabel {
+  margin-top: 6px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.divider {
+  font-size: clamp(24px, 5vw, 36px);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-8px);
+}
+
+/* ============================================== Final stretch (<= 10s left)
+*/
+
+.finalTimer {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-width: min(82vw, 420px);
+  min-height: min(62vw, 340px);
+  padding: clamp(28px, 8vw, 56px);
+  overflow: hidden;
+  background: transparent;
+}
+
+.ring {
+  position: absolute;
+  width: clamp(130px, 28vw, 220px);
+  aspect-ratio: 1;
+  border: 2px solid rgba(255, 117, 160, 0.55);
+  border-radius: 50%;
+  box-shadow: 0 0 24px rgba(255, 117, 160, 0.25);
+  pointer-events: none;
+}
+
+.number {
+  position: relative;
+  z-index: 1;
+  font-size: clamp(72px, 20vw, 180px);
+  font-weight: 800;
+  line-height: 1;
+  color: #ffffff;
+  filter: drop-shadow(0 0 40px rgba(255, 117, 160, 0.6));
+}
+
+.label {
+  position: relative;
+  z-index: 1;
+  margin: var(--spacing-md) 0 0;
+  font-size: clamp(16px, 3vw, 22px);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Subtle pulse on the wrap background so the last 10 seconds feel alive
+   without touching global body styles. */
+.wrap[data-parity='even'] {
+  animation: pulseEven 1s ease-in-out;
+}
+
+.wrap[data-parity='odd'] {
+  animation: pulseOdd 1s ease-in-out;
+}
+
+@keyframes pulseEven {
+  0% {
+    background: radial-gradient(circle at 50% 50%, rgba(255, 117, 160, 0.12), transparent 60%);
+  }
+  100% {
+    background: transparent;
+  }
+}
+
+@keyframes pulseOdd {
+  0% {
+    background: radial-gradient(circle at 50% 50%, rgba(252, 227, 138, 0.12), transparent 60%);
+  }
+  100% {
+    background: transparent;
+  }
+}
+
+/* ============================================== Dev skip button
+*/
+
+.skipButton {
+  margin-top: var(--spacing-lg);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.skipButton:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ============================================== Responsive
+*/
+
+@media (max-width: 480px) {
+  .unitRow {
+    padding: var(--spacing-md) var(--spacing-lg);
+    gap: var(--spacing-xs);
+  }
+
+  .unit {
+    min-width: 48px;
+  }
+}

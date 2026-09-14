@@ -1,0 +1,97 @@
+.page {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.passcodeGate { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; padding: calc(24px + env(safe-area-inset-top)) calc(20px + env(safe-area-inset-right)) calc(24px + env(safe-area-inset-bottom)) calc(20px + env(safe-area-inset-left)); background: radial-gradient(ellipse at top, var(--color-bg-secondary), var(--color-bg-primary) 70%); }
+.passcodePanel { width: min(100%, 420px); padding: clamp(28px, 7vw, 48px); border: 1px solid var(--color-glass-border); border-radius: 16px; background: var(--color-glass-bg); backdrop-filter: blur(16px); box-shadow: 0 20px 60px rgba(0, 0, 0, .4); text-align: center; }
+.passcodeEyebrow { margin: 0 0 12px; color: var(--color-accent-gold); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+.passcodePanel h1 { margin: 0; color: white; font-family: var(--font-script); font-size: clamp(34px, 9vw, 52px); font-weight: 400; }
+.passcodeHint { color: rgba(255, 255, 255, .72); }
+.passcodeInput { width: 100%; min-height: 52px; margin: 12px 0; padding: 10px 14px; border: 1px solid var(--color-glass-border); border-radius: 10px; background: rgba(0, 0, 0, .2); color: white; font: 700 20px var(--font-ui); letter-spacing: .18em; text-align: center; }
+.passcodeButton { width: 100%; min-height: 48px; border: 1px solid var(--color-accent-gold); border-radius: 10px; background: linear-gradient(135deg, var(--color-accent-pink), var(--color-accent-magenta)); color: white; font-weight: 700; cursor: pointer; }
+.passcodeError { margin-bottom: 0; color: #ff9ab8; font-size: 13px; }
+
+.cakeScene {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 3vh, var(--spacing-2xl));
+  padding: var(--spacing-lg) var(--spacing-xl);
+  overflow: hidden;
+}
+
+.birthdayImage {
+  position: absolute;
+  top: 6%;
+  left: 50%;
+  z-index: 0;
+  width: min(92vw, 1100px);
+  max-height: 36vh;
+  object-fit: contain;
+  transform: translateX(-50%);
+  opacity: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 0 24px rgba(252, 227, 138, 0.7));
+}
+
+.cta {
+  position: relative;
+  z-index: 5;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, var(--color-accent-pink), var(--color-accent-magenta));
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: 17px;
+  padding: 14px 36px;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 0 40px rgba(255, 117, 160, 0.35);
+  transition: transform 0.2s ease;
+  pointer-events: auto;
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+}
+
+.cta:active {
+  transform: scale(0.96);
+}
+
+.nextCta {
+  position: absolute;
+  right: 24px;
+  bottom: 22px;
+  z-index: 5;
+  padding: 12px 20px;
+  border: 1px solid rgba(252, 227, 138, 0.6);
+  border-radius: 999px;
+  background: rgba(13, 11, 24, 0.72);
+  color: var(--color-accent-gold);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.nextCta:hover,
+.nextCta:focus-visible {
+  background: rgba(252, 227, 138, 0.14);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  .nextCta {
+    right: 16px;
+    bottom: 16px;
+    padding: 11px 16px;
+  }
+}

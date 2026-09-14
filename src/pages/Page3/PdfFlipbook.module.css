@@ -1,0 +1,220 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 0;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  overflow: hidden;
+  background: transparent;
+}
+
+.rotationTip {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: max-content;
+  max-width: calc(100vw - 28px);
+  padding: 10px 10px 10px 14px;
+  border: 1px solid rgba(216, 199, 163, 0.35);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.94);
+  color: #f4eddf;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  transform: translateX(-50%);
+  animation: tipIn 350ms ease both;
+}
+
+.rotationTipIcon {
+  color: #d8c7a3;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.rotationTip button {
+  width: 22px;
+  height: 22px;
+  margin-left: 2px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(216, 199, 163, 0.14);
+  color: #d8c7a3;
+  cursor: pointer;
+  font-size: 17px;
+  line-height: 1;
+}
+
+.zoomViewport {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: transparent;
+}
+
+.zoomContent {
+  display: grid;
+  place-items: center;
+  transform-origin: center center;
+  transition: transform 180ms ease-out;
+}
+
+.bookFrame {
+  width: min(82vw, 1040px);
+  height: min(69vh, 690px);
+  display: grid;
+  place-items: center;
+  perspective: 1800px;
+  background: transparent;
+}
+
+.flipBook {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  margin: 0;
+  background: transparent;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.58);
+}
+
+.flipBook :global(.stf__parent),
+.flipBook :global(.stf__block),
+.flipBook :global(.stf__item) {
+  margin: 0;
+  padding: 0;
+  gap: 0;
+}
+
+.pageSheet {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: transparent;
+}
+
+.pageSheet picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.pageImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: transparent;
+}
+
+.loading,
+.message {
+  display: grid;
+  place-items: center;
+  gap: 16px;
+  color: rgba(247, 239, 222, 0.72);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 2px solid rgba(216, 199, 163, 0.22);
+  border-top-color: #d8c7a3;
+  border-radius: 50%;
+  animation: spin 850ms linear infinite;
+}
+
+.controls {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 3vw, 32px);
+  min-height: 40px;
+  color: rgba(247, 239, 222, 0.7);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.controls button {
+  min-width: 112px;
+  padding: 8px 12px;
+  border: 1px solid rgba(216, 199, 163, 0.4);
+  border-radius: 999px;
+  background: var(--color-glass-bg);
+  color: #d8c7a3;
+  cursor: pointer;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  transition: background 180ms ease, border-color 180ms ease, opacity 180ms ease;
+}
+
+.controls button:hover:not(:disabled),
+.controls button:focus-visible:not(:disabled) {
+  border-color: #d8c7a3;
+  background: rgba(216, 199, 163, 0.16);
+}
+
+.controls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.32;
+}
+
+.controls .zoomButton {
+  min-width: 34px;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 20px;
+  line-height: 1;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes tipIn {
+  from { opacity: 0; transform: translate(-50%, -10px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@media (max-width: 700px) {
+  .wrapper {
+    gap: 14px;
+  }
+
+  .bookFrame {
+    width: min(86vw, 430px);
+    height: min(66vh, 620px);
+  }
+
+  .controls {
+    gap: 10px;
+    font-size: 10px;
+  }
+
+  .controls button {
+    min-width: 0;
+    padding: 8px 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner,
+  .rotationTip { animation-duration: 1ms; }
+  .zoomContent { transition: none; }
+}
